@@ -1374,7 +1374,7 @@ class PhpTypography {
 				(\d+)
 				(
 					(?:\<sup\>(?:st|nd|rd|th)<\/sup\>)?												# handle ordinals after fractions
-					(?:\Z|\s|$this->chr['noBreakSpace']|$this->chr['noBreakNarrowSpace']|\.|\!|\?|\)|\;|\:|\'|\")			# makes sure we are not messing up a url
+					(?:\Z|\s|$nbsp|$nbnsp|\.|\!|\?|\)|\;|\:|\'|\")		                        	# makes sure we are not messing up a url
 				)
 			/xu";
 			
