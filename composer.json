@@ -1,6 +1,7 @@
 {
     "name": "debach/php-typography",
     "description": "The KINGdesk PHP Typography library improves typography on the web.",
+    "license": "GNU General Public License 2.0",
     "require": {
         "php": ">=5.3.0"
     }
