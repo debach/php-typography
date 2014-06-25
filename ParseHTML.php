@@ -13,62 +13,7 @@ Author URI: http://kingdesk.com/about/jeff/
 	For web design services, please contact info@kingdesk.com.
 */
 
-
-// first we define some constants
-// Valid constant names
-define("ALL_TAGS", 1);
-define("OPENING_TAGS", 2);
-define("CLOSING_TAGS", 3);
-define("SELFCLOSING_TAGS", 4);
-define("OPENING_AND_SELFCLOSING_TAGS", 5);
-define("SELFCLOSING_AND_OPENING_TAGS", 5);
-define("OPENING_AND_CLOSING_TAGS", 7);
-define("CLOSING_AND_OPENING_TAGS", 7);
-define("CLOSING_AND_SELFCLOSING_TAGS", 6);
-define("SELFCLOSING_AND_CLOSING_TAGS", 6);
-
-define("ALL_TOKENS", 1);
-define("TEXT_TOKENS", 2);
-define("TAG_TOKENS", 3);
-define("COMMENT_TOKENS", 4);
-define("CDATA_TOKENS", 5);
-define("TEXT_AND_TAG_TOKENS", 6);
-define("TAG_AND_TEXT_TOKENS", 6);
-define("TEXT_AND_COMMENT_TOKENS", 7);
-define("COMMENT_AND_TEXT_TOKENS", 7);
-define("TEXT_AND_CDATA_TOKENS", 8);
-define("CDATA_AND_TEXT_TOKENS", 8);
-define("TAG_AND_COMMENT_TOKENS", 9);
-define("COMMENT_AND_TAG_TOKENS", 9);
-define("TAG_AND_CDATA_TOKENS", 10);
-define("CDATA_AND_TAG_TOKENS", 10);
-define("COMMENT_AND_CDATA_TOKENS", 11);
-define("CDATA_AND_COMMENT_TOKENS", 11);
-define("TEXT_TAG_AND_COMMENT_TOKENS", 12);
-define("TEXT_COMMENT_AND_TAG_TOKENS", 12);
-define("TAG_TEXT_AND_COMMENT_TOKENS", 12);
-define("TAG_COMMENT_AND_TEXT_TOKENS", 12);
-define("COMMENT_TAG_AND_TEXT_TOKENS", 12);
-define("COMMENT_TEXT_AND_TAG_TOKENS", 12);
-define("TEXT_TAG_AND_CDATA_TOKENS", 13);
-define("TEXT_CDATA_AND_TAG_TOKENS", 13);
-define("TAG_TEXT_AND_CDATA_TOKENS", 13);
-define("TAG_CDATA_AND_TEXT_TOKENS", 13);
-define("CDATA_TAG_AND_TEXT_TOKENS", 13);
-define("CDATA_TEXT_AND_TAG_TOKENS", 13);
-define("TEXT_COMMENT_AND_CDATA_TOKENS", 14);
-define("TEXT_CDATA_AND_COMMENT_TOKENS", 14);
-define("COMMENT_TEXT_AND_CDATA_TOKENS", 14);
-define("COMMENT_CDATA_AND_TEXT_TOKENS", 14);
-define("CDATA_COMMENT_AND_TEXT_TOKENS", 14);
-define("CDATA_TEXT_AND_COMMENT_TOKENS", 14);
-define("TAG_COMMENT_AND_CDATA_TOKENS", 15);
-define("TAG_CDATA_AND_COMMENT_TOKENS", 15);
-define("COMMENT_TAG_AND_CDATA_TOKENS", 15);
-define("COMMENT_CDATA_AND_TAG_TOKENS", 15);
-define("CDATA_COMMENT_AND_TAG_TOKENS", 15);
-define("CDATA_TAG_AND_COMMENT_TOKENS", 15);
-
+namespace Debach\PhpTypography;
 
 #########################################################################################################
 #########################################################################################################
@@ -80,7 +25,60 @@ define("CDATA_TAG_AND_COMMENT_TOKENS", 15);
 ##
 #########################################################################################################
 #########################################################################################################
-class parseHTML {
+class ParseHTML {
+
+	const ALL_TAGS = 1;
+	const OPENING_TAGS = 2;
+	const CLOSING_TAGS = 3;
+	const SELFCLOSING_TAGS = 4;
+	const OPENING_AND_SELFCLOSING_TAGS = 5;
+	const SELFCLOSING_AND_OPENING_TAGS = 5;
+	const OPENING_AND_CLOSING_TAGS = 7;
+	const CLOSING_AND_OPENING_TAGS = 7;
+	const CLOSING_AND_SELFCLOSING_TAGS = 6;
+	const SELFCLOSING_AND_CLOSING_TAGS = 6;
+
+	const ALL_TOKENS = 1;
+	const TEXT_TOKENS = 2;
+	const TAG_TOKENS = 3;
+	const COMMENT_TOKENS = 4;
+	const CDATA_TOKENS = 5;
+	const TEXT_AND_TAG_TOKENS = 6;
+	const TAG_AND_TEXT_TOKENS = 6;
+	const TEXT_AND_COMMENT_TOKENS = 7;
+	const COMMENT_AND_TEXT_TOKENS = 7;
+	const TEXT_AND_CDATA_TOKENS = 8;
+	const CDATA_AND_TEXT_TOKENS = 8;
+	const TAG_AND_COMMENT_TOKENS = 9;
+	const COMMENT_AND_TAG_TOKENS = 9;
+	const TAG_AND_CDATA_TOKENS = 10;
+	const CDATA_AND_TAG_TOKENS = 10;
+	const COMMENT_AND_CDATA_TOKENS = 11;
+	const CDATA_AND_COMMENT_TOKENS = 11;
+	const TEXT_TAG_AND_COMMENT_TOKENS = 12;
+	const TEXT_COMMENT_AND_TAG_TOKENS = 12;
+	const TAG_TEXT_AND_COMMENT_TOKENS = 12;
+	const TAG_COMMENT_AND_TEXT_TOKENS = 12;
+	const COMMENT_TAG_AND_TEXT_TOKENS = 12;
+	const COMMENT_TEXT_AND_TAG_TOKENS = 12;
+	const TEXT_TAG_AND_CDATA_TOKENS = 13;
+	const TEXT_CDATA_AND_TAG_TOKENS = 13;
+	const TAG_TEXT_AND_CDATA_TOKENS = 13;
+	const TAG_CDATA_AND_TEXT_TOKENS = 13;
+	const CDATA_TAG_AND_TEXT_TOKENS = 13;
+	const CDATA_TEXT_AND_TAG_TOKENS = 13;
+	const TEXT_COMMENT_AND_CDATA_TOKENS = 14;
+	const TEXT_CDATA_AND_COMMENT_TOKENS = 14;
+	const COMMENT_TEXT_AND_CDATA_TOKENS = 14;
+	const COMMENT_CDATA_AND_TEXT_TOKENS = 14;
+	const CDATA_COMMENT_AND_TEXT_TOKENS = 14;
+	const CDATA_TEXT_AND_COMMENT_TOKENS = 14;
+	const TAG_COMMENT_AND_CDATA_TOKENS = 15;
+	const TAG_CDATA_AND_COMMENT_TOKENS = 15;
+	const COMMENT_TAG_AND_CDATA_TOKENS = 15;
+	const COMMENT_CDATA_AND_TAG_TOKENS = 15;
+	const CDATA_COMMENT_AND_TAG_TOKENS = 15;
+	const CDATA_TAG_AND_COMMENT_TOKENS = 15;
 
 	var $blockTags = array("address", "article", "aside", "blockquote", "center", "dd", "dialog", "dir", "div", "dl", "dt", "fieldset", "figure", "footer", "form", "frameset", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "isindex", "li", "menu", "nav", "noframes", "noscript", "ol", "p", "pre", "section", "table", "tbody", "td", "tfoot", "th", "thead", "tr", "ul");
 	var $html = array();
@@ -171,7 +169,7 @@ class parseHTML {
 		# find Find any tag
 		$anyTag = "$commentTag|$dtdTag|$cdataTag|$xmlTag|$htmlTag"; // required modifiers: x (multiline pattern) s (DotAll)
 
-		$parts = preg_split("@($anyTag)@s", $rawHTML, -1, PREG_SPLIT_DELIM_CAPTURE);
+		$parts = preg_split("@($anyTag)@s", $rawHTML, -1, self::PREG_SPLIT_DELIM_CAPTURE);
 
 		// we will use "prevChr" and "nextChr" to give context to type "text"
 		// "prevChr" is not relevant to the first child of type "text" in a block level HTML element
@@ -444,11 +442,11 @@ $i = 0;
 		return $this->unlock_type("tag");
 	}
 	
-	#	Params:		$tagType INT equal to OPENING_TAGS, CLOSING_TAGS, SELFCLOSING_TAGS, OPENING_AND_SELFCLOSING_TAGS, SELFCLOSING_AND_CLOSING_TAGS, OPENING_AND_CLOSING_TAGS, ALL_TAGS
-	function lock_tags($tagType = ALL_TAGS) {
+	#	Params:		$tagType INT equal to self::OPENING_TAGS, self::CLOSING_TAGS, self::SELFCLOSING_TAGS, self::OPENING_AND_SELFCLOSING_TAGS, self::SELFCLOSING_AND_CLOSING_TAGS, self::OPENING_AND_CLOSING_TAGS, self::ALL_TAGS
+	function lock_tags($tagType = self::ALL_TAGS) {
 		$tags = $this->get_type("tag");
 
-		if($tagType == OPENING_TAGS) {
+		if($tagType == self::OPENING_TAGS) {
 			$openingTags = array();
 			foreach($tags as $index => $tag) {
 				if(!isset($tag["openPos"]) && isset($tag["closePos"])) {
@@ -458,7 +456,7 @@ $i = 0;
 			return $this->lock($openingTags);
 		}
 
-		if($tagType == CLOSING_TAGS) {
+		if($tagType == self::CLOSING_TAGS) {
 			$closingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["openPos"]) && !isset($tag["closePos"])) {
@@ -468,7 +466,7 @@ $i = 0;
 			return $this->lock($closingTags);
 		}
 
-		if($tagType == SELFCLOSING_TAGS) {
+		if($tagType == self::SELFCLOSING_TAGS) {
 			$selfClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["openPos"]) && isset($tag["closePos"])) {
@@ -478,7 +476,7 @@ $i = 0;
 			return $this->lock($selfClosingTags);
 		}
 
-		if($tagType == OPENING_AND_SELFCLOSING_TAGS) {
+		if($tagType == self::OPENING_AND_SELFCLOSING_TAGS) {
 			$openingAndSelfClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["closePos"])) {
@@ -488,7 +486,7 @@ $i = 0;
 			return $this->lock($openingAndSelfClosingTags);
 		}
 
-		if($tagType == SELFCLOSING_AND_CLOSING_TAGS) {
+		if($tagType == self::SELFCLOSING_AND_CLOSING_TAGS) {
 			$selfClosingAndClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["openPos"])) {
@@ -498,7 +496,7 @@ $i = 0;
 			return $this->lock($selfClosingAndClosingTags);
 		}
 
-		if($tagType == OPENING_AND_CLOSING_TAGS) {
+		if($tagType == self::OPENING_AND_CLOSING_TAGS) {
 			$openingAndClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if((!isset($tag["openPos"]) && isset($tag["closePos"])) || (isset($tag["openPos"]) && !isset($tag["closePos"]))) {
@@ -509,11 +507,11 @@ $i = 0;
 		}	
 		return $this->lock($tags);
 	}
-	#	Params:		$tagType INT equal to OPENING_TAGS, CLOSING_TAGS, SELFCLOSING_TAGS, OPENING_AND_SELFCLOSING_TAGS, SELFCLOSING_AND_CLOSING_TAGS, OPENING_AND_CLOSING_TAGS, ALL_TAGS
-	function unlock_tags($tagType = ALL_TAGS) {
+	#	Params:		$tagType INT equal to self::OPENING_TAGS, self::CLOSING_TAGS, self::SELFCLOSING_TAGS, self::OPENING_AND_SELFCLOSING_TAGS, self::SELFCLOSING_AND_CLOSING_TAGS, self::OPENING_AND_CLOSING_TAGS, self::ALL_TAGS
+	function unlock_tags($tagType = self::ALL_TAGS) {
 		$tags = $this->get_type("tag");
 
-		if($tagType == OPENING_TAGS) {
+		if($tagType == self::OPENING_TAGS) {
 			$openingTags = array();
 			foreach($tags as $index => $tag) {
 				if(!isset($tag["openPos"]) && isset($tag["closePos"])) {
@@ -523,7 +521,7 @@ $i = 0;
 			return $this->unlock($openingTags);
 		}
 
-		if($tagType == CLOSING_TAGS) {
+		if($tagType == self::CLOSING_TAGS) {
 			$closingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["openPos"]) && !isset($tag["closePos"])) {
@@ -533,7 +531,7 @@ $i = 0;
 			return $this->unlock($closingTags);
 		}
 
-		if($tagType == SELFCLOSING_TAGS) {
+		if($tagType == self::SELFCLOSING_TAGS) {
 			$selfClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["openPos"]) && isset($tag["closePos"])) {
@@ -543,7 +541,7 @@ $i = 0;
 			return $this->unlock($selfClosingTags);
 		}
 
-		if($tagType == OPENING_AND_SELFCLOSING_TAGS) {
+		if($tagType == self::OPENING_AND_SELFCLOSING_TAGS) {
 			$openingAndSelfClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["closePos"])) {
@@ -553,7 +551,7 @@ $i = 0;
 			return $this->unlock($openingAndSelfClosingTags);
 		}
 
-		if($tagType == SELFCLOSING_AND_CLOSING_TAGS) {
+		if($tagType == self::SELFCLOSING_AND_CLOSING_TAGS) {
 			$selfClosingAndClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["openPos"])) {
@@ -563,7 +561,7 @@ $i = 0;
 			return $this->unlock($selfClosingAndClosingTags);
 		}
 
-		if($tagType == OPENING_AND_CLOSING_TAGS) {
+		if($tagType == self::OPENING_AND_CLOSING_TAGS) {
 			$openingAndClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if((!isset($tag["openPos"]) && isset($tag["closePos"])) || (isset($tag["openPos"]) && !isset($tag["closePos"]))) {
@@ -582,7 +580,7 @@ $i = 0;
 		return $this->unlock_type("text");		
 	}
 
-	function lock_children($tokens, $tokenType = ALL_TOKENS) {
+	function lock_children($tokens, $tokenType = self::ALL_TOKENS) {
 		foreach($tokens as $index => $token) {
 			//only process opening tags
 			if( (!isset($token["openPos"]) || !$token["openPos"]) && ( isset($token["closePos"]) && $token["closePos"]) ) {
@@ -596,7 +594,7 @@ $i = 0;
 		}
 		return TRUE;		
 	}
-	function unlock_children($tokens, $tokenType = ALL_TOKENS) {
+	function unlock_children($tokens, $tokenType = self::ALL_TOKENS) {
 		foreach($tokens as $index => $token) {
 			//only process opening tags
 			if( (!isset($token["openPos"]) || !$token["openPos"]) && (isset($token["closePos"]) && $token["closePos"]) ) {
@@ -675,11 +673,11 @@ $i = 0;
 		return $this->get_unlocked_type("tag");		
 	}
 	
-	#	Params:		$tagType INT equal to OPENING_TAGS, CLOSING_TAGS, SELFCLOSING_TAGS, OPENING_AND_SELFCLOSING_TAGS, SELFCLOSING_AND_CLOSING_TAGS, OPENING_AND_CLOSING_TAGS, ALL_TAGS
-	function get_tags($tagType = ALL_TAGS) {
+	#	Params:		$tagType INT equal to self::OPENING_TAGS, self::CLOSING_TAGS, self::SELFCLOSING_TAGS, self::OPENING_AND_SELFCLOSING_TAGS, self::SELFCLOSING_AND_CLOSING_TAGS, self::OPENING_AND_CLOSING_TAGS, self::ALL_TAGS
+	function get_tags($tagType = self::ALL_TAGS) {
 		$tags = $this->get_type("tag");
 
-		if($tagType == OPENING_TAGS) {
+		if($tagType == self::OPENING_TAGS) {
 			$openingTags = array();
 			foreach($tags as $index => $tag) {
 				if(!isset($tag["openPos"]) && isset($tag["closePos"])) {
@@ -689,7 +687,7 @@ $i = 0;
 			return $openingTags;
 		}
 
-		if($tagType == CLOSING_TAGS) {
+		if($tagType == self::CLOSING_TAGS) {
 			$closingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["openPos"]) && !isset($tag["closePos"])) {
@@ -699,7 +697,7 @@ $i = 0;
 			return $closingTags;
 		}
 
-		if($tagType == SELFCLOSING_TAGS) {
+		if($tagType == self::SELFCLOSING_TAGS) {
 			$selfClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["openPos"]) && isset($tag["closePos"])) {
@@ -709,7 +707,7 @@ $i = 0;
 			return $selfClosingTags;
 		}
 
-		if($tagType == OPENING_AND_SELFCLOSING_TAGS) {
+		if($tagType == self::OPENING_AND_SELFCLOSING_TAGS) {
 			$openingAndSelfClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["closePos"])) {
@@ -719,7 +717,7 @@ $i = 0;
 			return $openingAndSelfClosingTags;
 		}
 
-		if($tagType == SELFCLOSING_AND_CLOSING_TAGS) {
+		if($tagType == self::SELFCLOSING_AND_CLOSING_TAGS) {
 			$selfClosingAndClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["openPos"])) {
@@ -729,7 +727,7 @@ $i = 0;
 			return $selfClosingAndClosingTags;
 		}
 
-		if($tagType == OPENING_AND_CLOSING_TAGS) {
+		if($tagType == self::OPENING_AND_CLOSING_TAGS) {
 			$openingAndClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if((!isset($tag["openPos"]) && isset($tag["closePos"])) || (isset($tag["openPos"]) && !isset($tag["closePos"]))) {
@@ -741,11 +739,11 @@ $i = 0;
 		
 		return $tags;
 	}
-	# 	Params:	$tagType INT equal to OPENING_TAGS, CLOSING_TAGS, SELFCLOSING_TAGS, OPENING_AND_SELFCLOSING_TAGS, SELFCLOSING_AND_CLOSING_TAGS, OPENING_AND_CLOSING_TAGS, ALL_TAGS
-	function get_locked_tags($tagType = ALL_TAGS) {
+	# 	Params:	$tagType INT equal to self::OPENING_TAGS, self::CLOSING_TAGS, self::SELFCLOSING_TAGS, self::OPENING_AND_SELFCLOSING_TAGS, self::SELFCLOSING_AND_CLOSING_TAGS, self::OPENING_AND_CLOSING_TAGS, self::ALL_TAGS
+	function get_locked_tags($tagType = self::ALL_TAGS) {
 		$tags = $this->get_locked_type("tag");		
 
-		if($tagType == OPENING_TAGS) {
+		if($tagType == self::OPENING_TAGS) {
 			$openingTags = array();
 			foreach($tags as $index => $tag) {
 				if(!isset($tag["openPos"]) && isset($tag["closePos"])) {
@@ -755,7 +753,7 @@ $i = 0;
 			return $openingTags;
 		}
 
-		if($tagType == CLOSING_TAGS) {
+		if($tagType == self::CLOSING_TAGS) {
 			$closingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["openPos"]) && !isset($tag["closePos"])) {
@@ -765,7 +763,7 @@ $i = 0;
 			return $closingTags;
 		}
 
-		if($tagType == SELFCLOSING_TAGS) {
+		if($tagType == self::SELFCLOSING_TAGS) {
 			$selfClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["openPos"]) && isset($tag["closePos"])) {
@@ -775,7 +773,7 @@ $i = 0;
 			return $selfClosingTags;
 		}
 
-		if($tagType == OPENING_AND_SELFCLOSING_TAGS) {
+		if($tagType == self::OPENING_AND_SELFCLOSING_TAGS) {
 			$openingAndSelfClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["closePos"])) {
@@ -785,7 +783,7 @@ $i = 0;
 			return $openingAndSelfClosingTags;
 		}
 
-		if($tagType == SELFCLOSING_AND_CLOSING_TAGS) {
+		if($tagType == self::SELFCLOSING_AND_CLOSING_TAGS) {
 			$selfClosingAndClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["openPos"])) {
@@ -795,7 +793,7 @@ $i = 0;
 			return $selfClosingAndClosingTags;
 		}
 
-		if($tagType == OPENING_AND_CLOSING_TAGS) {
+		if($tagType == self::OPENING_AND_CLOSING_TAGS) {
 			$openingAndClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if((!isset($tag["openPos"]) && isset($tag["closePos"])) || (isset($tag["openPos"]) && !isset($tag["closePos"]))) {
@@ -807,11 +805,11 @@ $i = 0;
 		
 		return $tags;
 	}
-	# 	Params:	$tagType INT equal to OPENING_TAGS, CLOSING_TAGS, SELFCLOSING_TAGS, OPENING_AND_SELFCLOSING_TAGS, SELFCLOSING_AND_CLOSING_TAGS, OPENING_AND_CLOSING_TAGS, ALL_TAGS
-	function get_unlocked_tags($tagType = ALL_TAGS) {
+	# 	Params:	$tagType INT equal to self::OPENING_TAGS, self::CLOSING_TAGS, self::SELFCLOSING_TAGS, self::OPENING_AND_SELFCLOSING_TAGS, self::SELFCLOSING_AND_CLOSING_TAGS, self::OPENING_AND_CLOSING_TAGS, self::ALL_TAGS
+	function get_unlocked_tags($tagType = self::ALL_TAGS) {
 		$tags = $this->get_unlocked_type("tag");		
 
-		if($tagType == OPENING_TAGS) {
+		if($tagType == self::OPENING_TAGS) {
 			$openingTags = array();
 			foreach($tags as $index => $tag) {
 				if(!isset($tag["openPos"]) && isset($tag["closePos"])) {
@@ -821,7 +819,7 @@ $i = 0;
 			return $openingTags;
 		}
 
-		if($tagType == CLOSING_TAGS) {
+		if($tagType == self::CLOSING_TAGS) {
 			$closingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["openPos"]) && !isset($tag["closePos"])) {
@@ -831,7 +829,7 @@ $i = 0;
 			return $closingTags;
 		}
 
-		if($tagType == SELFCLOSING_TAGS) {
+		if($tagType == self::SELFCLOSING_TAGS) {
 			$selfClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["openPos"]) && isset($tag["closePos"])) {
@@ -841,7 +839,7 @@ $i = 0;
 			return $selfClosingTags;
 		}
 
-		if($tagType == OPENING_AND_SELFCLOSING_TAGS) {
+		if($tagType == self::OPENING_AND_SELFCLOSING_TAGS) {
 			$openingAndSelfClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["closePos"])) {
@@ -851,7 +849,7 @@ $i = 0;
 			return $openingAndSelfClosingTags;
 		}
 
-		if($tagType == SELFCLOSING_AND_CLOSING_TAGS) {
+		if($tagType == self::SELFCLOSING_AND_CLOSING_TAGS) {
 			$selfClosingAndClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if(isset($tag["openPos"])) {
@@ -861,7 +859,7 @@ $i = 0;
 			return $selfClosingAndClosingTags;
 		}
 
-		if($tagType == OPENING_AND_CLOSING_TAGS) {
+		if($tagType == self::OPENING_AND_CLOSING_TAGS) {
 			$openingAndClosingTags = array();
 			foreach($tags as $index => $tag) {
 				if((!isset($tag["openPos"]) && isset($tag["closePos"])) || (isset($tag["openPos"]) && !isset($tag["closePos"]))) {
@@ -885,8 +883,8 @@ $i = 0;
 	}
 	
 	# 	Params:	$tagNames STRING tag name or ARRAY of tag names
-	#			$tagType INT equal to OPENING_TAGS, CLOSING_TAGS, SELFCLOSING_TAGS, OPENING_AND_SELFCLOSING_TAGS, SELFCLOSING_AND_CLOSING_TAGS, OPENING_AND_CLOSING_TAGS, ALL_TAGS
-	function get_tags_by_name($tagNames, $tagType = ALL_TAGS) {
+	#			$tagType INT equal to self::OPENING_TAGS, self::CLOSING_TAGS, self::SELFCLOSING_TAGS, self::OPENING_AND_SELFCLOSING_TAGS, self::SELFCLOSING_AND_CLOSING_TAGS, self::OPENING_AND_CLOSING_TAGS, self::ALL_TAGS
+	function get_tags_by_name($tagNames, $tagType = self::ALL_TAGS) {
 		if(is_string($tagNames)) $tagNames = array($tagNames);
 		$tags = $this->get_tags($tagType);
 		$tagsByName = array();
@@ -901,17 +899,17 @@ $i = 0;
 	}
 	#	Params:	$idNames STRING id name or ARRAY of id names
 	function get_tag_by_id($idNames) {
-		return $this->get_tags_by_attribute('id', $idNames, OPENING_AND_SELFCLOSING_TAGS);
+		return $this->get_tags_by_attribute('id', $idNames, self::OPENING_AND_SELFCLOSING_TAGS);
 	}
 	#	Params:	$classNames STRING class name or ARRAY of class names
-	#			$tagType INT equal to OPENING_TAGS, SELFCLOSING_TAGS, OPENING_AND_SELFCLOSING_TAGS
-	function get_tags_by_class($classNames, $tagType = OPENING_AND_SELFCLOSING_TAGS) {
+	#			$tagType INT equal to self::OPENING_TAGS, self::SELFCLOSING_TAGS, self::OPENING_AND_SELFCLOSING_TAGS
+	function get_tags_by_class($classNames, $tagType = self::OPENING_AND_SELFCLOSING_TAGS) {
 		return $this->get_tags_by_attribute('class', $classNames, $tagType);
 	}
 	#	Params:	$attribute STRING attribute type
 	#			$attributeValue STRING class name or ARRAY of attribute values
-	#			$tagType INT equal to OPENING_TAGS, SELFCLOSING_TAGS, OPENING_AND_SELFCLOSING_TAGS
-	function get_tags_by_attribute($attribute, $attributeValues, $tagType = OPENING_TAGS) {
+	#			$tagType INT equal to self::OPENING_TAGS, self::SELFCLOSING_TAGS, self::OPENING_AND_SELFCLOSING_TAGS
+	function get_tags_by_attribute($attribute, $attributeValues, $tagType = self::OPENING_TAGS) {
 		if(is_string($attributeValues)) $attributeValues = array($attributeValues);
 		$tags = $this->get_tags($tagType);
 		$tagsByAttribute = array();
@@ -929,7 +927,7 @@ $i = 0;
 			foreach ($tags as $index => $tag) {
 				if(isset($tag["attribute"]["class"])) {
 					//because there may be multiple classes
-					$classList = preg_split('#\s+#', $tag["attribute"]["class"] , -1, PREG_SPLIT_NO_EMPTY);
+					$classList = preg_split('#\s+#', $tag["attribute"]["class"] , -1, self::PREG_SPLIT_NO_EMPTY);
 					foreach($classList as $className) {
 						foreach($attributeValues as $attributeValue) {
 							if($className == $attributeValue) {
@@ -953,7 +951,7 @@ $i = 0;
 	}
 
 	#	Params:	ARRAY of tokens
-	function get_children($tokens, $tokenType = ALL_TOKENS) {
+	function get_children($tokens, $tokenType = self::ALL_TOKENS) {
 		$results = array();
 		foreach($tokens as $index => $token) {
 			//exclude (self)closing tags
@@ -1003,7 +1001,7 @@ $i = 0;
 				if(isset($parent["attributes"][$attributeName])) {
 					if($attributeName == "class" || $attributeName == "CLASS") {
 						//because there may be multiple classes
-						$classList = preg_split('#\s+#', $parent["attributes"][$attributeName] , -1, PREG_SPLIT_NO_EMPTY);
+						$classList = preg_split('#\s+#', $parent["attributes"][$attributeName] , -1, self::PREG_SPLIT_NO_EMPTY);
 						foreach($classList as $className) {
 							foreach($attributeValues as $attributeValue) {
 								if($className == $attributeValue) {
@@ -1108,37 +1106,37 @@ $i = 0;
 
 	#   Params:		STRING beginning index
 	#				STRING ending index
-	function get_sequential_tokens($begIndex, $endIndex, $tokenType = ALL_TOKENS) {
+	function get_sequential_tokens($begIndex, $endIndex, $tokenType = self::ALL_TOKENS) {
 		$tokens = array();
 		$types = array();
 
-		if($tokenType == TEXT_TOKENS) {
+		if($tokenType == self::TEXT_TOKENS) {
 			$types = array('text');
-		} elseif($tokenType == TAG_TOKENS) {
+		} elseif($tokenType == self::TAG_TOKENS) {
 			$types = array('tag');
-		} elseif($tokenType == COMMENT_TOKENS) {
+		} elseif($tokenType == self::COMMENT_TOKENS) {
 			$types = array('comment');
-		} elseif($tokenType == CDATA_TOKENS) {
+		} elseif($tokenType == self::CDATA_TOKENS) {
 			$types = array('cdata');
-		} elseif($tokenType == TEXT_AND_TAG_TOKENS) {
+		} elseif($tokenType == self::TEXT_AND_TAG_TOKENS) {
 			$types = array('text','tag');
-		} elseif($tokenType == TEXT_AND_COMMENT_TOKENS) {
+		} elseif($tokenType == self::TEXT_AND_COMMENT_TOKENS) {
 			$types = array('text','comment');
-		} elseif($tokenType == TEXT_AND_CDATA_TOKENS) {
+		} elseif($tokenType == self::TEXT_AND_CDATA_TOKENS) {
 			$types = array('text','cdata');
-		} elseif($tokenType == TAG_AND_COMMENT_TOKENS) {
+		} elseif($tokenType == self::TAG_AND_COMMENT_TOKENS) {
 			$types = array('tag','comment');
-		} elseif($tokenType == TAG_AND_CDATA_TOKENS) {
+		} elseif($tokenType == self::TAG_AND_CDATA_TOKENS) {
 			$types = array('tag','cdata');
-		} elseif($tokenType == COMMENT_AND_CDATA_TOKENS) {
+		} elseif($tokenType == self::COMMENT_AND_CDATA_TOKENS) {
 			$types = array('comment','cdata');
-		} elseif($tokenType == TEXT_TAG_AND_COMMENT_TOKENS) {
+		} elseif($tokenType == self::TEXT_TAG_AND_COMMENT_TOKENS) {
 			$types = array('text','tag','comment');
-		} elseif($tokenType == TEXT_TAG_AND_CDATA_TOKENS) {
+		} elseif($tokenType == self::TEXT_TAG_AND_CDATA_TOKENS) {
 			$types = array('text','tag','cdata');
-		} elseif($tokenType == TEXT_COMMENT_AND_CDATA_TOKENS) {
+		} elseif($tokenType == self::TEXT_COMMENT_AND_CDATA_TOKENS) {
 			$types = array('text','comment','cdata');
-		} elseif($tokenType == TAG_COMMENT_AND_CDATA_TOKENS) {
+		} elseif($tokenType == self::TAG_COMMENT_AND_CDATA_TOKENS) {
 			$types = array('tag','comment','cdata');
 		} else {
 			$types = array('text','tag','comment','cdata');

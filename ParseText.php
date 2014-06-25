@@ -13,9 +13,7 @@ Author URI: http://kingdesk.com/about/jeff/
 	For web design services, please contact info@kingdesk.com.
 */
 
-
-
-
+namespace Debach\PhpTypography;
 
 #########################################################################################################
 #########################################################################################################
@@ -26,7 +24,7 @@ Author URI: http://kingdesk.com/about/jeff/
 ##
 #########################################################################################################
 #########################################################################################################
-class parseText {
+class ParseText {
 
 	var $mb = FALSE; //changes to this must occur prior to load
 	var $parsedHTML;

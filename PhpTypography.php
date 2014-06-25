@@ -12,8 +12,10 @@
 	For web design services, please contact jeff@kingdesk.com.
 */
 
+namespace Debach\PhpTypography;
+
 # if used with multibyte language, UTF-8 encoding is required!
-class phpTypography {
+class PhpTypography {
 
 	var $mb = FALSE; //cannot be changed after load
 	var $chr = array();
@@ -393,9 +395,9 @@ class phpTypography {
 		$this->settings["diacriticLanguage"] = $lang;
 
 		if(file_exists(dirname(__FILE__).'/diacritics/'.$this->settings["diacriticLanguage"].'.php')) {
-			include('diacritics/'.$this->settings["diacriticLanguage"].'.php');
+			include(dirname(__FILE__).'/diacritics/'.$this->settings["diacriticLanguage"].'.php');
 		} else {
-			include('diacritics/en-US.php');
+			include(dirname(__FILE__).'/diacritics/en-US.php');
 		}
 		$this->settings["diacriticWords"] = $diacriticWords;
 		
@@ -606,9 +608,9 @@ class phpTypography {
 		$this->settings["hyphenLanguage"] = $lang;
 
 		if(file_exists(dirname(__FILE__).'/lang/'.$this->settings["hyphenLanguage"].'.php')) {
-			include('lang/'.$this->settings["hyphenLanguage"].'.php');
+			include(dirname(__FILE__).'/lang/'.$this->settings["hyphenLanguage"].'.php');
 		} else {
-			include('lang/en-US.php');
+			include(dirname(__FILE__).'/lang/en-US.php');
 		}
 		$this->settings["hyphenationPattern"] = $patgen;
 		$this->settings["hyphenationPatternMaxSegment"] = $patgenMaxSeg;
@@ -767,10 +769,8 @@ class phpTypography {
 		if( isset($this->settings["ignoreTags"] ) && $isTitle && ( in_array('h1', $this->settings["ignoreTags"]) || in_array('h2', $this->settings["ignoreTags"]) ) )
 			return $html;
 		
-		require_once("php-parser/php-parser.php");
-		
 		// parse the html
-		$this->parsedHTML = new parseHTML();
+		$this->parsedHTML = new ParseHTML();
 		$this->parsedHTML->load($html);
 		$this->parsedHTML->unlock_text();
 		$tagsToIgnore = $this->parsedHTML->get_tags_by_name($this->settings["ignoreTags"]);
@@ -804,7 +804,7 @@ class phpTypography {
 			$unlockedText = $this->unit_spacing($unlockedText);
 
 			//break it down for a bit more granularity
-			$this->parsedText = new parseText();
+			$this->parsedText = new ParseText();
 			$this->parsedText->load($unlockedText);
 			$parsedMixedWords = $this->parsedText->get_words(-1,0); // prohibit letter only words, allow caps
 			$caps = (isset($this->settings["hyphenateAllCaps"]) && $this->settings["hyphenateAllCaps"]) ? 0 : -1 ;
@@ -856,7 +856,7 @@ class phpTypography {
 		require_once("php-parser/php-parser.php");
 		
 		// parse the html
-		$this->parsedHTML = new parseHTML();
+		$this->parsedHTML = new ParseHTML();
 		$this->parsedHTML->load($html);
 		$this->parsedHTML->unlock_text();
 		$tagsToIgnore = $this->parsedHTML->get_tags_by_name($this->settings["ignoreTags"]);
