@@ -169,7 +169,7 @@ class ParseHTML {
 		# find Find any tag
 		$anyTag = "$commentTag|$dtdTag|$cdataTag|$xmlTag|$htmlTag"; // required modifiers: x (multiline pattern) s (DotAll)
 
-		$parts = preg_split("@($anyTag)@s", $rawHTML, -1, self::PREG_SPLIT_DELIM_CAPTURE);
+		$parts = preg_split("@($anyTag)@s", $rawHTML, -1, PREG_SPLIT_DELIM_CAPTURE);
 
 		// we will use "prevChr" and "nextChr" to give context to type "text"
 		// "prevChr" is not relevant to the first child of type "text" in a block level HTML element
@@ -927,7 +927,7 @@ $i = 0;
 			foreach ($tags as $index => $tag) {
 				if(isset($tag["attribute"]["class"])) {
 					//because there may be multiple classes
-					$classList = preg_split('#\s+#', $tag["attribute"]["class"] , -1, self::PREG_SPLIT_NO_EMPTY);
+					$classList = preg_split('#\s+#', $tag["attribute"]["class"] , -1, PREG_SPLIT_NO_EMPTY);
 					foreach($classList as $className) {
 						foreach($attributeValues as $attributeValue) {
 							if($className == $attributeValue) {
@@ -1001,7 +1001,7 @@ $i = 0;
 				if(isset($parent["attributes"][$attributeName])) {
 					if($attributeName == "class" || $attributeName == "CLASS") {
 						//because there may be multiple classes
-						$classList = preg_split('#\s+#', $parent["attributes"][$attributeName] , -1, self::PREG_SPLIT_NO_EMPTY);
+						$classList = preg_split('#\s+#', $parent["attributes"][$attributeName] , -1, PREG_SPLIT_NO_EMPTY);
 						foreach($classList as $className) {
 							foreach($attributeValues as $attributeValue) {
 								if($className == $attributeValue) {
