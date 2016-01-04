@@ -3,6 +3,19 @@ PhpTypography
 
 PhpTypography is based on the [PHP Typography library](http://kingdesk.com/projects/php-tyography/) by KINGdesk. It is extended to support the PSR-0 autoloading standard.
 
+## Installation
+
+Install PhpTypography with [composer](https://getcomposer.org) via
+
+    composer require debach/php-typography:dev-master
+    composer install
+
+and then use the class like
+
+    $html       = '...';
+    $typography = new Debach\PhpTypography\PhpTypography();
+    $prettyHtml = $typography->process($html);
+
 ## What PhpTypography does
 
 PhpTypography enhances the typography of the text on your web pages. The following table shows some examples of HTML texts before and after processing.
@@ -53,12 +66,12 @@ For more examples, see the [project homepage](http://kingdesk.com/projects/php-t
 
 ## How to use PhpTypography
 
-Construct an instance `$typography` of `Debach\PhpTypography` and call `$typography->process($html)` on it with the HTML text `$text` you want to process:
+Construct an instance `$typography` of `Debach\PhpTypography\PhpTypography` and call `$typography->process($html)` on it with the HTML text `$text` you want to process:
 
-    $htmlBefore = '<p>I\'m waiting for "Peter"...</p>';
-    $typography = new Debach\PhpTypography();
-    $htmlAfter  = $typography->process($htmlBefore);
-    echo $after;
+    $html       = '<p>I\'m waiting for "Peter"...</p>';
+    $typography = new Debach\PhpTypography\PhpTypography();
+    $prettyHtml = $typography->process($html);
+    echo $prettyHtml;
 
 The above code will print (soft hyphens not shown)
 
