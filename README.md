@@ -66,7 +66,7 @@ For more examples, see the [project homepage](http://kingdesk.com/projects/php-t
 
 ## How to use PhpTypography
 
-Construct an instance `$typography` of `Debach\PhpTypography\PhpTypography` and call `$typography->process($html)` on it with the HTML text `$text` you want to process:
+Construct an instance `$typography` of `Debach\PhpTypography\PhpTypography` and call `$typography->process($html)` on it with the HTML text `$html` you want to process:
 
     $html       = '<p>I\'m waiting for "Peter"...</p>';
     $typography = new Debach\PhpTypography\PhpTypography();
